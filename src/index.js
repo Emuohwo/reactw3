@@ -10,12 +10,21 @@ class Computer extends React.Component {
             color: "black"
         };
     }
+    changeColor = () => {
+        this.setState({color: "silver"})
+    }
 
     render() {
         return (
             <div>
-                <h1>Specify all the STATE properties your componenet need in the constructor method</h1>
-                <p>I am curruently using a {this.state.color} {this.state.brand} {this.state.model} Computer</p>
+                <h5>Specify all the STATE properties your componenet need in the constructor method</h5>
+                <h2>
+                    I am currently using a {this.state.color} {this.state.brand}  {this.state.model} Computer
+                    </h2>
+                <button 
+                type="button"
+                onClick={this.changeColor}
+                >Change color</button>
             </div>
         )
     }
