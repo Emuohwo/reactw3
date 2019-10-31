@@ -21,15 +21,24 @@ const table = (
       constructor() {
           super();
           this.state = {color: "red"};
-      }
-
-
-    render() {
-      return <h2>Hi, I am a {this.props.color} Car!</h2>;
+        }
+        render() {
+        return <h2>Hi, I am a ({this.state.color}) Car!</h2>;
+        }
     }
-  }
+
+    class Garage extends React.Component {
+        render () {
+            return (
+                <div>
+                    <h1>Who lives in my Garage?</h1>
+                    <Car />
+                </div>
+            )
+        }
+    }
 
 ReactDOM.render(
-        <Car color="red" />, 
+        <Garage  />, 
         document.getElementById('root')
     );
