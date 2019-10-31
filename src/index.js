@@ -5,32 +5,29 @@ class Computer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            brand: "Dell",
-            model: "Inspiron",
-            color: "black"
+            favoritecolor: "black"
         };
     }
-    changeColor = () => {
-        this.setState({color: "silver"})
+    static getDerivedStateFromProps(props, state) {
+        return {favoritecolor: props.favcol }
     }
 
     render() {
         return (
             <div>
-                <h5>Specify all the STATE properties your componenet need in the constructor method</h5>
+                {/* <h5>Specify all the STATE properties your componenet need in the constructor method</h5> */}
                 <h2>
-                    I am currently using a {this.state.color} {this.state.brand}  {this.state.model} Computer
+                    I am currently using a black Dell Computer 
+                    
                     </h2>
-                <button 
-                type="button"
-                onClick={this.changeColor}
-                >Change color</button>
+                    <h3>Although my favorite color is {this.state.favoritecolor} </h3>
+                
             </div>
         )
     }
 }
 
 ReactDOM.render(
-        <Computer />, 
+        <Computer favcol="skuyblue" />, 
         document.getElementById('root')
     );
