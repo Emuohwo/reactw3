@@ -7,22 +7,25 @@ class HandlingForm extends React.Component {
         this.state = {
             username: '',
             age: null,
+            errorMessage: '',
         };
     }
 
     changeHandler = (event) => {
         let name = event.target.name;
         let val = event.target.value;
-        
+        let err = '';
+        if (name === "age") {
+            if (val != "" && !Number(val)) {
+                err = <strong>Your age must be a number</strong>
+            }
+        }
+        this.setState({errorMessage: err})
         this.setState({[name]: val})
     }
 
     submitHandler = (evt) => {
         evt.preventDefault();
-        let age = evt.target.value;
-            if (!Number(age)) {
-                alert("Age must be a number")
-            }
     }
     render() {
         
@@ -48,6 +51,7 @@ class HandlingForm extends React.Component {
                   type='submit' 
                   value='submit input'
                 />
+                <p>{this.state.errorMessage}</p>
             </form>
         )
     }
