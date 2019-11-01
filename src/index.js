@@ -17,10 +17,6 @@ class Colors extends React.Component {
 
     
 
-    getSnapshotBeforeUpdate(prevProps, prevState) {
-        document.getElementById('div1').innerHTML = 
-        "Before the update, the color was " + prevState.favoritecolor
-    }
 
     componentDidUpdate() {
         document.getElementById('div2').innerHTML = 
@@ -31,7 +27,7 @@ class Colors extends React.Component {
       return (
           <div>
             <h3>{this.state.favoritecolor} is my favourite color</h3>
-            <div id="div1"></div>
+            
             <div id="div2"></div>
         </div>
         )
