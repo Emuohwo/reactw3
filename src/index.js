@@ -4,11 +4,16 @@ import ReactDOM from 'react-dom';
 class HandlingForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {username: ''}
+        this.state = {
+            username: '',
+            age: null,
+        };
     }
 
     changeHandler = (event) => {
-        this.setState({username: event.target.value})
+        let name = event.target.name;
+        let val = event.target.value
+        this.setState({[name]: val})
     }
 
     submitHandler = (evt) => {
@@ -16,19 +21,22 @@ class HandlingForm extends React.Component {
         alert('You are submiting ' + this.state.username)
     }
     render() {
-        // let header = '';
-        // if(this.state.username) {
-        //     header = <h1>Hello {this.state.username}</h1>
-        // } else {
-        //     header = ''
-        // }
+        
         return (
             <form onSubmit={this.submitHandler}>
-                 <h1>Hello {this.state.username}</h1>
+                 <h1>Hello {this.state.username} {this.state.age}</h1>
                 {/* {header} */}
                 <p> Enter your username here</p>
                 <input
                  type='text'
+                 name='username'
+                  onChange={this.changeHandler}
+                />
+                <br />
+                <br />
+                <input
+                 type='text'
+                 name='age'
                   onChange={this.changeHandler}
                 />
                 <input 
@@ -42,4 +50,4 @@ class HandlingForm extends React.Component {
   
 ReactDOM.render(<HandlingForm />, document.getElementById('root'));
 
-// remove the commented lines above to activate conditional rendering 
+ 
