@@ -7,24 +7,33 @@ class HandlingForm extends React.Component {
         this.state = {username: ''}
     }
 
-    conditionalRendering = (event) => {
+    changeHandler = (event) => {
         this.setState({username: event.target.value})
     }
 
+    submitHandler = (evt) => {
+        evt.preventDefault();
+        alert('You are submiting ' + this.state.username)
+    }
     render() {
-        let header;
-        if(this.state.username) {
-            header = <h1>Hello {this.state.username}</h1>
-        } else {
-            header = ''
-        }
+        // let header = '';
+        // if(this.state.username) {
+        //     header = <h1>Hello {this.state.username}</h1>
+        // } else {
+        //     header = ''
+        // }
         return (
-            <form>
-                {header}
+            <form onSubmit={this.submitHandler}>
+                 <h1>Hello {this.state.username}</h1>
+                {/* {header} */}
                 <p> Enter your username here</p>
                 <input
                  type='text'
-                  onChange={this.conditionalRendering}
+                  onChange={this.changeHandler}
+                />
+                <input 
+                  type='submit' 
+                  value='submit input'
                 />
             </form>
         )
@@ -33,5 +42,4 @@ class HandlingForm extends React.Component {
   
 ReactDOM.render(<HandlingForm />, document.getElementById('root'));
 
-// getSnapshotBeforeUpdate method is use with componentDidMount method to 
-// avoid throwing error 
+// remove the commented lines above to activate conditional rendering 
