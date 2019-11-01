@@ -1,40 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Colors extends React.Component {
-  constructor(props) {
-      super(props);
-      this.state = {favoritecolor: "Silver"};
-  }
-
-
-  
-    componentDidMount() {
-        setTimeout(()=> {
-         this.setState({favoritecolor: "Gold"})
-        }, 2000)
+class Container extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {show: true}
     }
 
-    
-
-
-    componentDidUpdate() {
-        document.getElementById('div2').innerHTML = 
-        "The favourite color is updated to " + this.state.favoritecolor;
+    deHeader = () => {
+        this.setState({show: false})
     }
-
-  render() {
-      return (
-          <div>
-            <h3>{this.state.favoritecolor} is my favourite color</h3>
-            
-            <div id="div2"></div>
-        </div>
+    render() {
+        let myHeader;
+        if (this.state.show) {
+            myHeader = <Child />
+        };
+        return (
+            <div>
+                {myHeader}
+                <button type="button" onClick={this.deHeader}>Delete Header</button>
+            </div>
         )
-  }
+    }
+}
+
+class Child extends React.Component {
+    componentWillUnmount() {
+        alert("The Header component is about to be unmounted")
+    }
+    render() {
+        return (
+            <h1>Hello World!</h1>
+        )
+    }
 }
   
-ReactDOM.render(<Colors />, document.getElementById('root'));
+ReactDOM.render(<Container />, document.getElementById('root'));
 
 // getSnapshotBeforeUpdate method is use with componentDidMount method to 
 // avoid throwing error 
