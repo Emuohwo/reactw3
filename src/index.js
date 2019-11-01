@@ -6,20 +6,28 @@ class HandlingForm extends React.Component {
         super(props);
         this.state = {username: ''}
     }
-    myChangeHandler = (event) => {
+
+    conditionalRendering = (event) => {
         this.setState({username: event.target.value})
     }
+
     render() {
+        let header;
+        if(this.state.username) {
+            header = <h1>Hello {this.state.username}</h1>
+        } else {
+            header = ''
+        }
         return (
             <form>
-                <h1>Hello {this.state.username}</h1>
-                <p>Enter your Username here</p>
-                <input 
-                  type='text'
-                  onChange={this.myChangeHandler}
+                {header}
+                <p> Enter your username here</p>
+                <input
+                 type='text'
+                  onChange={this.conditionalRendering}
                 />
             </form>
-        );
+        )
     }
 }
   
