@@ -7,9 +7,12 @@ class Colors extends React.Component {
       this.state = {favoritecolor: "silver"};
   }
 
-  static getDerivedStateFromProps(props, state) {
-      return {favoritecolor: props.favcol}
+//   set the return value of this method to true to update color 
+// alteernatively, delete it
+  shouldComponentUpdate() {
+      return false;
   }
+  
  changeColor = () => {
      this.setState({favoritecolor: "green"})
  }
@@ -25,12 +28,9 @@ class Colors extends React.Component {
   }
 }
   
-ReactDOM.render(<Colors favcol="red" />, document.getElementById('root'));
+ReactDOM.render(<Colors />, document.getElementById('root'));
 
 /*
-This example has a button that changes the favorite color to green,
-but since the getDerivedStateFromProps() method is called,
-the favorite color is still rendered as red
-(because the method updates the state
-with the color from the favcol attribute).
+The shouldComponentUpdate method prevents the changing the color to green;
+try to comment out the shouldComponentUpdate to set the color to green
 */
