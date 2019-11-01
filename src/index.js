@@ -1,41 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Container extends React.Component {
+class HandlingForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {show: true}
+        this.state = {username: ''}
     }
-
-    deHeader = () => {
-        this.setState({show: false})
-    }
-    render() {
-        let myHeader;
-        if (this.state.show) {
-            myHeader = <Child />
-        };
-        return (
-            <div>
-                {myHeader}
-                <button type="button" onClick={this.deHeader}>Delete Header</button>
-            </div>
-        )
-    }
-}
-
-class Child extends React.Component {
-    componentWillUnmount() {
-        alert("The Header component is about to be unmounted")
+    myChangeHandler = (event) => {
+        this.setState({username: event.target.value})
     }
     render() {
         return (
-            <h1>Hello World!</h1>
-        )
+            <form>
+                <h1>Hello {this.state.username}</h1>
+                <p>Enter your Username here</p>
+                <input 
+                  type='text'
+                  onChange={this.myChangeHandler}
+                />
+            </form>
+        );
     }
 }
   
-ReactDOM.render(<Container />, document.getElementById('root'));
+ReactDOM.render(<HandlingForm />, document.getElementById('root'));
 
 // getSnapshotBeforeUpdate method is use with componentDidMount method to 
 // avoid throwing error 
